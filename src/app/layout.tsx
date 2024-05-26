@@ -20,7 +20,7 @@ export default function RootLayout({
 			<body className={montserrat.className}>
 				<Navbar />
 
-				<main className="mt-16 min-h-[calc(100vh - 64px)]">
+				<main>
 					{children}
 				</main>
 			</body>

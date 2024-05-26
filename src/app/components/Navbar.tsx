@@ -17,7 +17,7 @@ export default function Navbar() {
                     <Link href="/">About the Project</Link>
                 </li>
                 <li className="text-sm font-medium py-2 px-4 border border-black rounded-lg duration-300 hover:bg-slate-800 hover:border-slate-800 hover:text-white">
-                    <Link href="/">Create New Task</Link>
+                    <Link href="/newTask">Create New Task</Link>
                 </li>
             </ul>
         </nav>
