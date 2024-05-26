@@ -20,7 +20,7 @@ export default function RootLayout({
 			<body className={montserrat.className}>
 				<Navbar />
 
-				<main>
+				<main className="container m-auto">
 					{children}
 				</main>
 			</body>
