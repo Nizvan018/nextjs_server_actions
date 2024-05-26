@@ -1,22 +1,29 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import Navbar from "@components/Navbar";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Server Actions CRUD",
-  description: "A TODO app made in Next.js and including Server Actions CRUD",
+	title: "Server Actions CRUD",
+	description: "A TODO app made in Next.js and including Server Actions CRUD",
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={montserrat.className}>{children}</body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<body className={montserrat.className}>
+				<Navbar />
+
+				<main className="mt-16 min-h-[calc(100vh - 64px)]">
+					{children}
+				</main>
+			</body>
+		</html>
+	);
 }
