@@ -23,6 +23,10 @@ export default function TaskForm() {
         console.log(data);
     });
 
+    const onCancel = () => {
+
+    }
+
     return (
         <form className="flex flex-col gap-4 h-full p-6 rounded-lg text-white bg-slate-950">
             <div className="mb-4">
@@ -72,7 +76,7 @@ export default function TaskForm() {
 
             <div className="flex justify-between items-center gap-2 mt-4">
                 <button onClick={onSubmit} className="rounded-md py-2 px-4 text-slate-950 text-sm font-semibold bg-white duration-300 hover:px-8">Create</button>
-                <button className="flex text-white text-sm font-medium duration-300 hover:text-red-400">Cancelar</button>
+                <button onClick={onCancel} className="flex text-white text-sm font-medium duration-300 hover:text-red-400">Cancelar</button>
             </div>
         </form>
     )
