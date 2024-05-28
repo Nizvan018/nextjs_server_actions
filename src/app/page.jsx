@@ -4,8 +4,6 @@ import { TbAlertHexagonFilled } from "react-icons/tb";
 
 export default async function HomePage() {
 	const tasks = await prisma.task.findMany();
-	console.log(tasks);
-
 
 	return (
 		<div className='flex min-h-screen pt-32 md:pt-20 px-2'>
@@ -16,7 +14,19 @@ export default async function HomePage() {
 					{tasks.map(task => (
 						<div key={task.id} className='group flex gap-4 p-6 border-2 border-black border-b-8 rounded-xl cursor-pointer duration-300 hover:bg-black'>
 							<div className='flex flex-col justify-between gap-4 w-1/2'>
-								<h3 className='text-lg font-semibold px-1 bg-teal-300 w-fit duration-300 group-hover:bg-white'>{task.name}</h3>
+								<div className='flex flex-wrap'>
+									{task.name.split(' ').map((part, index) => (
+										index < 3 ? (
+											<h3 key={index} className='text-lg font-semibold px-1 bg-teal-300 w-fit duration-300 group-hover:bg-white'>
+												{part}
+											</h3>
+										) : (
+											<h3 key={index} className='text-lg font-semibold px-1 bg-teal-300 w-fit duration-300 group-hover:bg-white'>
+												...
+											</h3>
+										)
+									))}
+								</div>
 								<span className='flex gap-2 group-hover:text-white'>
 									<TbAlertHexagonFilled size={24} className='text-black group-hover:text-white' />
 									{task.priority}
