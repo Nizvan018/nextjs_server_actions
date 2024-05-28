@@ -1,18 +1,31 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@components/ui/ShadSelect";
+import prisma from "@/lib/prisma";
+import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default function TaskFormServer() {
     const onSubmit = async (data: FormData) => {
         "use server"
 
-        const name = data.get("name");
-        const description = data.get("description");
-        const priority = data.get("priority");
+        const name = data.get("name")?.toString();
+        const description = data.get("description")?.toString();
+        const priority = data.get("priority")?.toString();
 
-        console.log(name, description, priority);
-    }
+        if (!name || !description || !priority) {
+            return;
+        }
 
-    const onCancel = async () => {
-        "use server"
+        const res = await prisma.task.create({
+            data: {
+                name: name,
+                description: description,
+                priority: priority
+            }
+        });
+
+        console.log(res);
+
+        redirect('/');
     }
 
     return (
@@ -44,7 +57,7 @@ export default function TaskFormServer() {
             </Select>
             <div className="flex justify-between items-center gap-2 mt-4">
                 <button type="submit" className="rounded-md py-2 px-4 text-slate-950 text-sm font-semibold bg-white duration-300 hover:px-8">Create</button>
-                <button onClick={onCancel} className="flex text-white text-sm font-medium duration-300 hover:text-red-400">Cancelar</button>
+                <Link href="/" className="flex text-white text-sm font-medium duration-300 hover:text-red-400">Cancelar</Link>
             </div>
         </form>
     )
